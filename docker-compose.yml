@@ -1,0 +1,23 @@
+version : '3.8' 
+services:
+    apache2:
+        build: ./apache2
+        volumes:
+            - ./apache2/certs/book.crt:/etc/ssl/certs/book.crt:ro
+            - ./apache2/certs/book.key:/etc/ssl/private/book.key:ro
+            - ./apache2/book.conf:/etc/apache2/sites-available/book.conf:ro
+        ports:
+            - "8080:80"
+            - "8443:443"
+        networks:
+            - webnet
+    
+    tomcat:
+        build: ./book-manager-backend
+        ports:
+            - "9090:8080"
+        networks:
+            - webnet
+networks:
+    webnet:
+        driver: bridge 
