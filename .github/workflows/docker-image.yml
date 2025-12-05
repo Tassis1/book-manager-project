@@ -19,8 +19,8 @@ jobs:
         - name: check application
           run: |
             docker ps 
-            docker exec -it book-manager-project-tomcat-1 bash ls -l /webapps/ROOT.war || true 
-            docker excecbook-manager-project-tomcat-1 curl -v http://localhost:8080 || exit 1
+            docker exec  book-manager-project-tomcat-1 bash ls -l /webapps/ROOT.war || true 
+            docker exec book-manager-project-tomcat-1 curl -v http://localhost:8080 || exit 1
         - name: stop docker compose
           run: |
             docker compose down
